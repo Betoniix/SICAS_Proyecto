@@ -1,0 +1,33 @@
+.header {
+    width: 100%;
+    height: 15vh;
+    background-color: #0A1446;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.uadylogo{
+    width: 62px;
+    height: 101px;
+    margin-left: 40px;
+}
+
+.title{
+    font-weight: bold;
+    font-size: 40px;
+    color:white;
+    position: relative;
+    left: 50px;
+}
+
+.sesionbtn{
+    width: 214px;
+    height: 60px;
+    background-color: #D50F0F;
+    color: white;
+    font-size: 25px;
+    margin-right: 40px;
+    border-radius: 10px;
+}
+
