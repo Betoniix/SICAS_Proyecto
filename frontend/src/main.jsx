@@ -1,7 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { FormApp } from './FormApp';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode></React.StrictMode>
+ReactDOM.render(
+  <Router>
+    <FormApp></FormApp>
+  </Router>,
+  document.getElementById('root')
 );
