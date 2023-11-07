@@ -8,8 +8,6 @@ function LogIn() {
     const [usuario, setUsuario] = useState("");
     const [contra, setContra] = useState("");
 
-
-
     async function iniciarSesion() {
        
         let respuesta = await apiLogin(usuario, contra);
