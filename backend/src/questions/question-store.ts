@@ -2,8 +2,8 @@ import { Prisma } from "@prisma/client"
 import { CreateQuestionDTO } from "./dto/create-question-dto"
 import { UpdateQuestionDTO } from "./dto/update-question-dto"
 
-type CreateResponse = { answer: boolean, question: string }
-type GetResponse = { id: number, answer: boolean, question: string }
+type CreateResponse = { answer: string, question: string }
+type GetResponse = { id: number, answer: string, question: string }
 
 export interface IQuestions {
     create(createDTO: CreateQuestionDTO): Promise<CreateResponse | null>

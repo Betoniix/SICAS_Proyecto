@@ -39,7 +39,32 @@ model Capacity {
 }
 
 model Questions {
-  id       Int     @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   question String
-  answer   Boolean
+  answer   String
+}
+
+model Subjects {
+  id      Int     @id @default(autoincrement())
+  name    String
+  teacher String
+  Hours   Hours[]
+}
+
+model Hours {
+  id         Int    @id @default(autoincrement())
+  start_hour String
+  end_hour   String
+
+  subject    Subjects @relation(fields: [id_subject], references: [id])
+  id_subject Int
+}
+
+model Groups {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model ClassGroups {
+  id Int @id @default(autoincrement())
 }
