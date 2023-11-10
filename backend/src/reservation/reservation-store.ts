@@ -90,8 +90,8 @@ export class ReservationStore implements IReservation {
             nextDay.setDate(new Date().getDate() + 1)
             const UTCFORMAT = `${nextDay.getFullYear()}-${nextDay.getMonth()}-${nextDay.getDate()}`
 
-            reservation.ids_subjects.forEach((id_subject) => {
-                client.reservations.create({ data: { reservation_day: UTCFORMAT, id_student: reservation.id, id_subject } })
+            reservation.ids_subjects.forEach(async (id_subject) => {
+                await client.reservations.create({ data: { reservation_day: UTCFORMAT, id_student: reservation.id, id_subject } })
             })
 
             return true
