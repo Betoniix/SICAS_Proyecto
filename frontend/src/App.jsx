@@ -3,7 +3,7 @@ import LogIn from './modules/logIn'
 import AlertasAlumnos from './modules/alertasAlumnos'
 import GestionAulas from './modules/gestionAulas'
 import Aforo from './modules/aforo'
-import Cuestionario from './modules/cuestionario'
+import { Cuestionario } from './modules/cuestionario'
 
 export const App = () => {
     return (<Routes>
