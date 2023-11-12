@@ -7,7 +7,7 @@ function NavBar() {
             className="flex flex-col justify-center items-center border-b-[1px] border-gray-500 h-[60px]"
         >
             <Link
-                to="/admin/alertas"
+                to="/admin/alerta"
                 className="bg-[#0A1446] text-white text-[25px] font-medium rounded-lg py-2 px-4 mt-4 w-[290px] h-[60px]"
             >
                 Alertas
