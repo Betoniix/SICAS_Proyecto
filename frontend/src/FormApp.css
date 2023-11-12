@@ -1,0 +1,47 @@
+.header-container {
+    background-color: #0e3151; /* Color azul predeterminado de Bootstrap */
+    color: white; /* Cambiar el color del texto a blanco para mejorar la legibilidad */
+    height: 80px;
+  }
+
+  .header-title {
+    white-space: nowrap; 
+  }
+
+  .materia a {
+    display: block;
+    margin-bottom: 10px; 
+    text-align: left;
+  }
+
+  .links-style {
+    text-decoration: none;
+  }
+
+  .center-div {
+    margin-top: 10%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cuestionario{
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .registro {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .boton-azul {
+    background-color: #0e3151;
+    color: white;
+    border: 1px solid #0e3151;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
