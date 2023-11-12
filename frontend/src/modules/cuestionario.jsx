@@ -6,7 +6,7 @@ import Pregunta from "../components/pregunta";
 import Select from 'react-select';
 
 
-function aforo(){
+function cuestionario(){
 
     const opciones = [
         { value: 'Si', label: 'Sí' },
@@ -51,7 +51,7 @@ function aforo(){
 
 
         const [preguntas, setPreguntas] = useState(ListaPreguntas);
-        const [formData, setFormData] = useState({});
+        
 
     function anadirOnSubmit(pregunta, respuesta) {
         console.log({pregunta, respuesta});
@@ -65,7 +65,7 @@ function aforo(){
         copyPreguntas.push(nuevaPregunta);
     
         setMostrarModal(false);
-        setAulas(copyAulas);
+        setPreguntas(copyPreguntas);
       }
 
       function eliminar() {
@@ -195,4 +195,4 @@ function aforo(){
 
 }
 
-export default aforo;
+export default cuestionario;
