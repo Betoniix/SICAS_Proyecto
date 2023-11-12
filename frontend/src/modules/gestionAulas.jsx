@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "../components/header";
 import NavBar from "../components/navBar";
-import AulasModal from "../components/aulasModal";
+//import AulasModal from "../components/aulasModal";
 import Aula from "../components/aula";
-import AniadirModal from "../components/anñadirModal";
+import AniadirModal from "../components/añadirModal";
 
 function GestionAulas() {
   let AulasActuales = [
@@ -51,7 +51,7 @@ function GestionAulas() {
 
   const [aulas, setAulas] = useState(AulasActuales);
   const [mostrarForm, setMostrarForm] = useState(false);
-  const [formData, setFormData] = useState({});
+  //const [formData, setFormData] = useState({});
 
   function anadirOnSubmit(aula, edificio, capacidad) {
     let copyAulas = aulas;
@@ -82,13 +82,14 @@ function GestionAulas() {
       {mostrarForm && (
         <AniadirModal anadirOnSubmit={anadirOnSubmit}></AniadirModal>
       )}
-      <div class="h-[85vh] flex justify-evenly items-center justify-items-center justify-self-center">
+      <div className="h-[85vh] flex justify-evenly items-center justify-items-center justify-self-center">
         <NavBar />
-        <div class="h-[100%] flex flex-col justify-around items-center">
-          <div class="w-[1338px] h-[686px] max-h-[686px] bg-[#D9D9D9] flex flex-col content-center items-center overflow-auto ">
-            <p class="font-bold text-[30px] ">Aulas</p>
-            {aulas.map((aula) => (
+        <div className="h-[100%] flex flex-col justify-around items-center">
+          <div className="w-[1338px] h-[686px] max-h-[686px] bg-[#D9D9D9] flex flex-col content-center items-center overflow-auto ">
+            <p className="font-bold text-[30px] ">Aulas</p>
+            {aulas.map((aula, index) => (
               <Aula
+                key={index}
                 Nombre={aula.NombreAula}
                 Edificio={aula.Edificio}
                 Capacidad={aula.Capacidad}
@@ -96,7 +97,7 @@ function GestionAulas() {
             ))}
           </div>
           <button
-            class="w-[214px] h-[60px] bg-[#D5A00F] text-white text-[25px] font-normal rounded-[10px]"
+            className="w-[214px] h-[60px] bg-[#D5A00F] text-white text-[25px] font-normal rounded-[10px]"
             onClick={() => añadir()}
           >
             Añadir

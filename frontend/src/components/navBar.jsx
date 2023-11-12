@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 function NavBar() {
@@ -13,7 +13,7 @@ function NavBar() {
                 Alertas
             </Link>
             <Link
-                to="#"
+                to="/admin/aforo"
                 className="bg-[#0A1446] text-white text-[25px] font-medium rounded-lg py-2 px-4 mt-4 w-[290px] h-[60px]"
             >
                 Aforo
@@ -25,7 +25,7 @@ function NavBar() {
                 Aulas
             </Link>
             <Link
-                to="#"
+                to="/admin/cuestionario"
                 className="bg-[#0A1446] text-white text-[25px] font-medium rounded-lg py-2 px-4 mt-4 w-[290px] h-[60px]"
             >
                 Cuestionario

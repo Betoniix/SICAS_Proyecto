@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AulasModal from "./aulasModal";
 
 function Aula({ Nombre, Edificio, Capacidad }) {
@@ -19,14 +19,14 @@ function Aula({ Nombre, Edificio, Capacidad }) {
     setMostrarForm(false);
   };
 
-  const eliminar = () => {};
+  const eliminar = () => { };
 
   const editar = () => {
     setMostrarForm(true);
   };
 
   return (
-    <div class="w-[100%] flex justify-evenly my-8">
+    <div className="w-[100%] flex justify-evenly my-8">
       {mostrarForm && (
         <AulasModal
           editarOnSubmit={editarOnSubmit}
@@ -39,21 +39,19 @@ function Aula({ Nombre, Edificio, Capacidad }) {
         ></AulasModal>
       )}
 
-      <p class="text-[30px]">
+      <p className="text-[30px]">
         [{nombre}] - [{edificio}] - [{capacidad}]
       </p>
       <button
-        class="w-[214px] h-[60px] bg-[#D5A00F] text-white text-[25px] font-normal rounded-[10px]"
+        className="w-[214px] h-[60px] bg-[#D5A00F] text-white text-[25px] font-normal rounded-[10px]"
         onClick={() => editar()}
       >
         Editar
       </button>
       <button
-        class="w-[214px] h-[60px] bg-[#D50F0F] text-white text-[25px] font-normal rounded-[10px]"
+        className="w-[214px] h-[60px] bg-[#D50F0F] text-white text-[25px] font-normal rounded-[10px]"
         onClick={() => eliminar()}
-      >
-        Eliminar
-      </button>
+      >Eliminar</button>
       {mostrarForm ? true : false}
     </div>
   );
