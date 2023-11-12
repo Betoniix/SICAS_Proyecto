@@ -1,8 +1,12 @@
-import { useState } from "react";
 import "../index.css";
 import logo from "../assets/escudo.png";
 
 function aforo(){
+
+    const editarOnSubmit = (Aforo) => {
+        setAforo(aforo);
+    };
+
     
     return(
         <>
@@ -25,9 +29,11 @@ function aforo(){
                 <div className="self-center justify-self-center text-2xl font-bold">Aforo</div>
                 <div className="flex flex-col justify-self-center text-center self-center">
                     Porcentaje de capacidad
-                    <input className="w-60 h-8 rounded-md border-black border-2 p-1"></input>
+                    <input className="w-60 h-8 rounded-md border-black border-2 p-1" 
+                    onChange={(e) => editarOnSubmit(e.target.value)}
+                    ></input>
                 </div>
-                <div className="bg-[#D5A00F] w-44 h-14 rounded-md text-center self-center justify-self-center py-4 ">Actualizar</div>
+                <button className="bg-[#D5A00F] w-44 h-14 rounded-md text-center self-center justify-self-center py-4 submit">Actualizar</button>
 
             </div>
         </div>

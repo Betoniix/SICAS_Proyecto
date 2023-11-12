@@ -1,9 +1,80 @@
 import { useState } from "react";
+import React from 'react'
 import "../index.css";
 import logo from "../assets/escudo.png";
+import Pregunta from "../components/pregunta";
+import Select from 'react-select';
+
 
 function aforo(){
+
+    const opciones = [
+        { value: 'Si', label: 'Sí' },
+        { value: 'No', label: 'No' },
+      ]
     
+
+    let ListaPreguntas = [
+        {
+            Pregunta: "¿Estás vacunado?",
+            Respuesta: "Si",
+        },
+        {
+            Pregunta: "¿Tienes covid?",
+            Respuesta: "No",
+        },
+        {
+            Pregunta: "¿Estás vacunado?",
+            Respuesta: "Si",
+        },
+        {
+            Pregunta: "¿Tienes covid?",
+            Respuesta: "No",
+        },
+        {
+          Pregunta: "¿Estás vacunado?",
+          Respuesta: "Si",
+        },
+        {
+          Pregunta: "¿Tienes covid?",
+          Respuesta: "No",
+        },
+        {
+            Pregunta: "¿Estás vacunado?",
+            Respuesta: "Si",
+        },
+        {
+            Pregunta: "¿Tienes covid?",
+            Respuesta: "No",
+        },
+      ];
+
+
+        const [preguntas, setPreguntas] = useState(ListaPreguntas);
+        const [formData, setFormData] = useState({});
+
+    function anadirOnSubmit(pregunta, respuesta) {
+        console.log({pregunta, respuesta});
+        let copyPreguntas = preguntas;
+    
+        const nuevaPregunta = {
+          Pregunta: pregunta,
+          Respuesta: respuesta,
+        };
+    
+        copyPreguntas.push(nuevaPregunta);
+    
+        setMostrarModal(false);
+        setAulas(copyAulas);
+      }
+
+      function eliminar() {
+        
+      }
+    
+      const [pregunta, setPregunta] = useState("");
+      const [respuesta, setRespuesta] = useState("");
+  
     return(
         <>
         <div className="bg-[#0A1446] h-24 grid grid-cols-3 justify-items-center content-center">
@@ -23,12 +94,21 @@ function aforo(){
             
             <div className=" bg-[#E8E8E8] justify-self-center h-[550px] w-full mr-12 grid grid-cols-1 overflow-auto">
                 <div className="self-center justify-self-center text-2xl font-bold">Cuestionario</div>
+                {
+                preguntas.map((pregunta) => (
+                    <Pregunta
+                        Pregunta={pregunta.Pregunta}
+                        Respuesta={pregunta.Respuesta}
+                    ></Pregunta>
+                ))
+            }
+
                 <div className="grid grid-cols-4 content-center p-4">
                     <div className="col-span-2">
                         [Pregunta]-[Respuesta correcta]
                     </div>
-                    <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
-                    <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a>
+                    <button className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</button>
+                    <button className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</button>
                 </div>
                 <div className="grid grid-cols-4 content-center p-4">
                     <div className="col-span-2">
@@ -90,18 +170,23 @@ function aforo(){
             <div className="self-center justify-self-center text-2xl font-bold">Añadir nueva pregunta</div>
             <div className="flex flex-col justify-self-center text-center self-center">
                 Nueva pregunta
-                <input className="w-96 h-8 rounded-md border-black border-2 p-1"></input>
+                <input className="w-96 h-8 rounded-md border-black border-2 p-1"
+                value={pregunta}
+                onChange={(e) => setPregunta(e.target.value)}
+                ></input>
             </div>
             <div className="flex flex-col justify-self-center text-center self-center">
                 Respuesta correcta
-                <select name="respuesta" id="respuesta">
-                    <option value="si">Sí</option>
-                    <option value="no">No</option>
-    
-                 </select>
+                <select
+                value={respuesta}
+                onChange={(e) => setRespuesta(e.target.value)}>
+                    <option value="Si">Sí</option>
+                    <option value="No">No</option>
+                </select>
+                
             </div>
 
-            <input type="submit" value="Añadir" className="bg-[#D5A00F] w-44 h-14 rounded-md text-center self-center justify-self-center py-4 "></input>
+            <button value="Añadir" className="bg-[#D5A00F] w-44 h-14 rounded-md text-center self-center justify-self-center py-4 submit" onClick={() => anadirOnSubmit(pregunta, respuesta)}>Añadir</button>
                 
             </div>
         </div>
