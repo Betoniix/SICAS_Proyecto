@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+
+  role     Roles     @relation(fields: [id_role], references: [id])
+  id_role  Int
+  Students Students?
+}
+
+model Students {
+  id            Int             @id @default(autoincrement())
+  name          String
+  user          Users           @relation(fields: [id_user], references: [id])
+  id_user       Int             @unique
+  Bans          Bans?
+  Reservations  Reservations[]
+  Subscriptions Subscriptions[]
+}
+
+model Roles {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  Users Users[]
+}
+
+model Capacity {
+  id         Int @id @default(autoincrement())
+  percentage Int @unique
+}
+
+model Questions {
+  id       Int    @id @default(autoincrement())
+  question String
+  answer   String
+}
+
+model Subjects {
+  id           Int            @id @default(autoincrement())
+  name         String
+  Hours        Hours[]
+  Groups       Groups[]
+  Reservations Reservations[]
+}
+
+model Hours {
+  id         Int    @id @default(autoincrement())
+  start_hour String
+  end_hour   String
+
+  subject    Subjects @relation(fields: [id_subject], references: [id])
+  id_subject Int
+
+  day    Days @relation(fields: [id_day], references: [id])
+  id_day Int
+}
+
+model Days {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  Hours Hours[]
+}
+
+model Groups {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  classroom    ClassRooms @relation(fields: [id_classroom], references: [id])
+  id_classroom Int
+
+  subject    Subjects @relation(fields: [id_subject], references: [id])
+  id_subject Int
+
+  Subscriptions Subscriptions[]
+}
+
+model Builds {
+  id         Int          @id @default(autoincrement())
+  name       String
+  ClassRooms ClassRooms[]
+}
+
+model ClassRooms {
+  id       Int      @id @default(autoincrement())
+  name     String   @unique
+  capacity Int
+  Groups   Groups[]
+
+  build    Builds @relation(fields: [id_build], references: [id])
+  id_build Int
+}
+
+model Bans {
+  id Int @id @default(autoincrement())
+
+  start_ban String
+  end_ban   String
+
+  student    Students @relation(fields: [id_student], references: [id])
+  id_student Int      @unique
+}
+
+model Subscriptions {
+  id Int @id @default(autoincrement())
+
+  student    Students @relation(fields: [id_student], references: [id])
+  id_student Int
+
+  group    Groups @relation(fields: [id_group], references: [id])
+  id_group Int
+}
+
+model Reservations {
+  id              Int    @id @default(autoincrement())
+  reservation_day String
+
+  student    Students @relation(fields: [id_student], references: [id])
+  id_student Int
+
+  subject    Subjects @relation(fields: [id_subject], references: [id])
+  id_subject Int
+}
