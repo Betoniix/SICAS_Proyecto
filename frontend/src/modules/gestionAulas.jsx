@@ -3,7 +3,7 @@ import Header from "../components/header";
 import NavBar from "../components/navBar";
 import AulasModal from "../components/aulasModal";
 import Aula from "../components/aula";
-import AniadirModal from "../components/aniadirModal";
+import AniadirModal from "../components/anñadirModal";
 
 function GestionAulas() {
   let AulasActuales = [
