@@ -1,15 +1,38 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function NavBar(){
-
+function NavBar() {
     return (
-     <div className="w-[338px] h-[468px] outline outline-2 outline-black flex flex-col justify-center items-center">
-        <button className="w-[290px] h-[60px] bg-[#0A1446] text-white text-[25px] font-normal rounded-[10px] m-4">Alertas</button>
-        <button className="w-[290px] h-[60px] bg-[#0A1446] text-white text-[25px] font-normal rounded-[10px] m-4">Aforo</button>
-        <button className="w-[290px] h-[60px] bg-[#0A1446] text-white text-[25px] font-normal rounded-[10px] m-4">Aulas</button>
-        <button className="w-[290px] h-[60px] bg-[#0A1446] text-white text-[25px] font-normal rounded-[10px] m-4">Cuestionario</button>
-     </div>
-    )
+        <div
+            className="flex flex-col justify-center items-center border-b-[1px] border-gray-500 h-[60px]"
+        >
+            <Link
+                to="/admin/alertas"
+                className="bg-[#0A1446] text-white text-[25px] font-medium rounded-lg py-2 px-4 mt-4 w-[290px] h-[60px]"
+            >
+                Alertas
+            </Link>
+            <Link
+                to="#"
+                className="bg-[#0A1446] text-white text-[25px] font-medium rounded-lg py-2 px-4 mt-4 w-[290px] h-[60px]"
+            >
+                Aforo
+            </Link>
+            <Link
+                to="/admin/aulas"
+                className="bg-[#0A1446] text-white text-[25px] font-medium rounded-lg py-2 px-4 mt-4 w-[290px] h-[60px]"
+            >
+                Aulas
+            </Link>
+            <Link
+                to="#"
+                className="bg-[#0A1446] text-white text-[25px] font-medium rounded-lg py-2 px-4 mt-4 w-[290px] h-[60px]"
+            >
+                Cuestionario
+            </Link>
+        </div>
+    );
 }
 
 export default NavBar;
+
