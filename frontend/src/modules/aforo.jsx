@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../index.css";
 import logo from "../assets/escudo.png";
+import NavBar from "../components/navBar";
 
 function aforo(){
 
@@ -23,12 +24,7 @@ function aforo(){
             </div>
         </div>
         <div className=" grid grid-cols-3 content-center h-4/5 mt-10">
-            <div className="bg-white justify-self-center border-black border-2 h-[550px] w-[400px] grid grid-cols-1">
-                <a className="bg-[#0A1446] w-44 h-14 rounded-md text-center self-center justify-self-center py-4 text-white">Alertas</a>
-                <a className="bg-[#0A1446] w-44 h-14 rounded-md text-center self-center justify-self-center py-4 text-white">Aforo</a>
-                <a className="bg-[#0A1446] w-44 h-14 rounded-md text-center self-center justify-self-center py-4 text-white">Aulas</a>
-                <a className="bg-[#0A1446] w-44 h-14 rounded-md text-center self-center justify-self-center py-4 text-white">Cuestionario</a>
-            </div>
+            <NavBar />
             
             <div className="col-span-2 bg-[#E8E8E8] justify-self-center h-[550px] w-full mr-12 grid grid-cols-1">
                 <div className="self-center justify-self-center text-2xl font-bold">Aforo</div>
