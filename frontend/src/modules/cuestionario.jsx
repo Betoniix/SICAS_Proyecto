@@ -2,8 +2,17 @@
 import "../index.css";
 import NavBar from "../components/navBar";
 import Header from "../components/header";
+import { useGetCuestions } from "../hooks/useGetCuestions";
+import { useEffect, useState } from "react";
 
-function Cuestionario() {
+export const Cuestionario = () => {
+    /*   const [questions, setQuestions] = useState()
+      const { data, isLoading } = useGetCuestions()
+  
+      useEffect(() => {
+          if (!isLoading) setQuestions(data)
+          console.log(data)
+      }, [isLoading, data]) */
 
     return (
         <>
@@ -13,60 +22,14 @@ function Cuestionario() {
                 <div className=" bg-[#E8E8E8] justify-self-center h-[550px] w-full mr-12 grid grid-cols-1 overflow-auto">
                     <div className="self-center justify-self-center text-2xl font-bold">Cuestionario</div>
                     <div className="grid grid-cols-4 content-center p-4">
-                        <div className="col-span-2">
-                            [Pregunta]-[Respuesta correcta]
-                        </div>
-                        <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
-                        <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a>
-                    </div>
-                    <div className="grid grid-cols-4 content-center p-4">
-                        <div className="col-span-2">
-                            [Pregunta]-[Respuesta correcta]
-                        </div>
-                        <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
-                        <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a>
-                    </div>
-                    <div className="grid grid-cols-4 content-center p-4">
-                        <div className="col-span-2">
-                            [Pregunta]-[Respuesta correcta]
-                        </div>
-                        <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
-                        <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a>
-                    </div>
-                    <div className="grid grid-cols-4 content-center p-4">
-                        <div className="col-span-2">
-                            [Pregunta]-[Respuesta correcta]
-                        </div>
-                        <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
-                        <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a>
-                    </div>
-                    <div className="grid grid-cols-4 content-center p-4">
-                        <div className="col-span-2">
-                            [Pregunta]-[Respuesta correcta]
-                        </div>
-                        <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
-                        <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a>
-                    </div>
-                    <div className="grid grid-cols-4 content-center p-4">
-                        <div className="col-span-2">
-                            [Pregunta]-[Respuesta correcta]
-                        </div>
-                        <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
-                        <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a>
-                    </div>
-                    <div className="grid grid-cols-4 content-center p-4">
-                        <div className="col-span-2">
-                            [Pregunta]-[Respuesta correcta]
-                        </div>
-                        <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
-                        <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a>
-                    </div>
-                    <div className="grid grid-cols-4 content-center p-4">
-                        <div className="col-span-2">
-                            [Pregunta]-[Respuesta correcta]
-                        </div>
-                        <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
-                        <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a>
+                        {/*  {questions.map((quest) => {
+                            return <>
+                                <div className="col-span-2">
+                                    {quest.question} - {quest.answer}
+                                </div>
+                                <a className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Editar</a>
+                                <a className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2 ">Eliminar</a></>
+                        })} */}
                     </div>
 
                 </div>
@@ -94,4 +57,3 @@ function Cuestionario() {
 
 }
 
-export default Cuestionario;
