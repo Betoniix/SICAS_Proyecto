@@ -88,6 +88,7 @@ export class RoomsStore implements IRooms {
     async getAll(): Promise<GetRoomResponse[]> {
         try {
             const result = await client.classRooms.findMany({ select: { build: true, capacity: true, id: true, name: true } })
+            console.log(result)
             return result
         } catch (error) {
             console.log(error)

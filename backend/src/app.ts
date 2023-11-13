@@ -6,6 +6,7 @@ import { AlertRouter } from './alerts/alert-router'
 import { ReservationsRouter } from './reservation/reservation-router'
 import { ScannerRouter } from './scaner/scanner-router'
 import cors from 'cors'
+import { RoomsRouter } from './rooms/rooms-router'
 
 export const app = Express()
 
@@ -16,7 +17,7 @@ app.use('/capacity', CapacityRouter)
 app.use('/questions', QuestionRouter)
 app.use('/alerts', AlertRouter)
 app.use('/reservations', ReservationsRouter)
-app.use('/rooms', ReservationsRouter)
+app.use('/rooms', RoomsRouter)
 app.use('/qr', ScannerRouter)
 
 
