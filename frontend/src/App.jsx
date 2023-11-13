@@ -10,6 +10,7 @@ import { Roles } from './services/roles'
 import { Layout } from './components/userViews/Bienvenida'
 import { AccessForm } from './components/userViews/Alumnos/AccessForm'
 import { Escaneo } from './components/userViews/Escaneadores/Escaneo'
+import { Carga } from './components/userViews/Alumnos/Carga'
 
 export const App = () => {
     const storage = useLocalStorage.getStorage('auth')
@@ -26,6 +27,7 @@ export const App = () => {
             <Route element={<ProtectedPath isAllowed={!!storage && storage.role === Roles.STUDENT} ></ProtectedPath>}>
                 <Route path='/student/welcome' element={<Layout></Layout>}></Route>
                 <Route path='/student/healt' element={<AccessForm></AccessForm>}></Route>
+                <Route path='/student/load' element={<Carga></Carga>}></Route>
             </Route>
             <Route element={<ProtectedPath isAllowed={!!storage && storage.role === Roles.SCANNER} ></ProtectedPath>}>
                 <Route path='/scanner/welcome' element={<Layout></Layout>}></Route>

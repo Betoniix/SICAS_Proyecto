@@ -1,6 +1,7 @@
 export const useLocalStorage = {
     setStorage: SetStorage,
-    getStorage: GetStorage
+    getStorage: GetStorage,
+    deleteStorage: DeleteStorage
 }
 
 function SetStorage(key, payload) {
@@ -9,4 +10,8 @@ function SetStorage(key, payload) {
 
 function GetStorage(key) {
     return JSON.parse(localStorage.getItem(key))
+}
+
+function DeleteStorage() {
+    localStorage.clear()
 }

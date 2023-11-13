@@ -20,8 +20,8 @@ function LogIn() {
             storage.setStorage('auth', respuesta.data)
 
             if (data.role === Roles.ADMIN) navigate('/admin/alerta')
-            if (data.role === Roles.STUDENT) navigate('#')
-            if (data.role === Roles.SCANNER) navigate('#')
+            if (data.role === Roles.STUDENT) navigate('/student/welcome')
+            if (data.role === Roles.SCANNER) navigate('/scanner/welcome')
 
 
         } catch (error) {
