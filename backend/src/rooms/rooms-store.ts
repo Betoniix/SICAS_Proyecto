@@ -1,16 +1,23 @@
 import { DBConnection } from "../utils/db-connection"
 import { CreateClassroomDTO } from "./dto/create-classroom-dto"
+import { UpdateClassroomDTO } from "./dto/update-classroom-dto"
 
 export interface IRooms {
-    create(createRoom: CreateClassroomDTO): Promise<GetResponse | null>
-    update(): Promise<number>
-    get(id: number): Promise<GetResponse | null>
-    getAll(): Promise<GetResponse[]>
+    create(createRoom: CreateClassroomDTO): Promise<GetRoomResponse | null>
+    update(updateDTO: UpdateClassroomDTO): Promise<boolean>
+    get(id: number): Promise<GetRoomResponse | null>
+    getAll(): Promise<GetRoomResponse[]>
+    getAllBuild(): Promise<GetBuildResponse[]>
 }
 
 const client = DBConnection.instance.client
 
-type GetResponse = {
+type GetBuildResponse = {
+    id: number;
+    name: string;
+}
+
+type GetRoomResponse = {
     id: number;
     name: string;
     capacity: number;
@@ -20,10 +27,17 @@ type GetResponse = {
     };
 }
 
-
-
 export class RoomsStore implements IRooms {
-    async create(createRoom: CreateClassroomDTO): Promise<GetResponse | null> {
+    async getAllBuild(): Promise<GetBuildResponse[]> {
+        try {
+            const result = await client.builds.findMany()
+            return result
+        } catch (error) {
+            console.log(error)
+            return []
+        }
+    }
+    async create(createRoom: CreateClassroomDTO): Promise<GetRoomResponse | null> {
         try {
             const result = await client.classRooms.create({
                 data: { capacity: createRoom.capacity, name: createRoom.name, id_build: createRoom.id_build },
@@ -39,16 +53,25 @@ export class RoomsStore implements IRooms {
         }
     }
 
-    async update(): Promise<number> {
+    async update(updateDTO: UpdateClassroomDTO): Promise<boolean> {
         try {
-
+            await client.classRooms.update({
+                where: { id: updateDTO.id! },
+                data: {
+                    id_build: updateDTO.id_build,
+                    capacity: updateDTO.capacity,
+                    name: updateDTO.name
+                }
+            })
+            return true
         } catch (error) {
-
+            console.log(error)
+            return false
         }
-        return 0
+
     }
 
-    async get(id: number): Promise<GetResponse | null> {
+    async get(id: number): Promise<GetRoomResponse | null> {
         try {
             const result = await client.classRooms.findFirst({ select: { build: true, capacity: true, id: true, name: true }, where: { id: id } })
 
@@ -62,7 +85,7 @@ export class RoomsStore implements IRooms {
 
 
     }
-    async getAll(): Promise<GetResponse[]> {
+    async getAll(): Promise<GetRoomResponse[]> {
         try {
             const result = await client.classRooms.findMany({ select: { build: true, capacity: true, id: true, name: true } })
             return result

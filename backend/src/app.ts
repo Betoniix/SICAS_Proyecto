@@ -16,4 +16,9 @@ app.use('/capacity', CapacityRouter)
 app.use('/questions', QuestionRouter)
 app.use('/alerts', AlertRouter)
 app.use('/reservations', ReservationsRouter)
+app.use('/rooms', ReservationsRouter)
 app.use('/qr', ScannerRouter)
+
+
+//Get, Post, Put, delete
+//http://localhost:4444/alerts/create
