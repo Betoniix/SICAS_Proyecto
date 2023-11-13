@@ -1,72 +1,48 @@
-
 import { Link } from 'react-router-dom';
+import Header from '../header';
+import { useEffect } from 'react';
+import { useLocalStorage } from '../../services/useLocalStorage';
+import { GetStudentID } from '../../services/getStudentId';
 
-/*import axios from 'axios';
-
-import db from '../../../server.js';
-*/
 export const Layout = () => {
-  /*
-    const [connection, setConnection] = useState(null);
-    const [data, setData] = useState([]);
-  
-    useEffect() => 
-      
-      if (!connection) {
-        const connection = mysql.createConnection(config);
-        connection.connect();
-        setConnection(connection);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const user = useLocalStorage.getStorage('auth');
+        const data = await GetStudentID(user.id);
+        useLocalStorage.setStorage('student', data.data)
+      } catch (error) {
+        console.error('Error:', error);
       }
-  
-      const query = `SELECT * FROM administradores`;
-      connection.query(query, (err, results) => {
-        if (err) {
-          console.log(err);
-        } else {
-          setData(results);
-        }
-      });
-    }, [connection]);
-  */
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div>
-      {/* FORM TITLE */}
-      <div className="center-div">
-        <h2>Te damos la bienvenida</h2>
-        {/*<ul>
-          {data.map(item => (
-            <li key={item.id}>{item.nombres} {item.apellidos}</li>
-          ))}
-          </ul>*/}
+    <>
+      <Header />
+      <div className="flex justify-center items-center h-screen">
+        {/* FORM TITLE */}
+        <div className="text-center">
+          <h2 className="text-3xl font-bold mb-4">Te damos la bienvenida</h2>
+          {/*<ul>
+            {data.map(item => (
+              <li key={item.id}>{item.nombres} {item.apellidos}</li>
+            ))}
+            </ul>*/}
 
+          <p className="mb-8">Reserva tu asistencia</p>
 
-
-        <a>Reserva tu asistencia</a>
-        <br />
-        <br />
-        <br />
-        <Link to="/student/healt" className="links-style">
-          {/* Usar Link para navegar a la página de RealizarCarga */}
-          <button className="btn btn-warning d-inline">Realizar Carga</button>
-        </Link>
+          <Link to="/student/healt" className="links-style">
+            <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-4 py-2 rounded">
+              Realizar Carga
+            </button>
+          </Link>
+        </div>
       </div>
-
-      <br></br>
-
-      <div className="center-div">
-        <h2>Te damos la bienvenida [Nombre Escaneadores]</h2>
-        <a>Comienza a registrar asistencias</a>
-        <br />
-        <br />
-        <br />
-        <Link to="/Escaneo" className="links-style">
-          {/* Usar Link para navegar a la página de RealizarCarga */}
-          <button className="btn btn-warning d-inline">Escanear</button>
-        </Link>
-      </div>
-
-
-
-    </div>
+    </>
   );
 };

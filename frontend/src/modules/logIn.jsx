@@ -17,7 +17,11 @@ function LogIn() {
             let respuesta = await apiLogin(usuario, contra);
             const data = respuesta.data
 
-            storage.setStorage('auth', respuesta.data)
+            const body = { id: respuesta.data.id, email: usuario, role: respuesta.data.role }
+
+            console.log(body)
+
+            storage.setStorage('auth', body)
 
             if (data.role === Roles.ADMIN) navigate('/admin/alerta')
             if (data.role === Roles.STUDENT) navigate('/student/welcome')

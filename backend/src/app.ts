@@ -5,8 +5,9 @@ import { QuestionRouter } from './questions/question-router'
 import { AlertRouter } from './alerts/alert-router'
 import { ReservationsRouter } from './reservation/reservation-router'
 import { ScannerRouter } from './scaner/scanner-router'
-import cors from 'cors'
 import { RoomsRouter } from './rooms/rooms-router'
+import cors from 'cors'
+import { StudentRouter } from './students/student-router'
 
 export const app = Express()
 
@@ -19,7 +20,4 @@ app.use('/alerts', AlertRouter)
 app.use('/reservations', ReservationsRouter)
 app.use('/rooms', RoomsRouter)
 app.use('/qr', ScannerRouter)
-
-
-//Get, Post, Put, delete
-//http://localhost:4444/alerts/create
+app.use('/student', StudentRouter)

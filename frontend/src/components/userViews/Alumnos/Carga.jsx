@@ -1,51 +1,69 @@
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../../../FormApp.css';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useGetSubjects } from '../../../hooks/useGetSubjects';
+import { useLocalStorage } from '../../../services/useLocalStorage';
+import { CreateReservation } from '../../../services/createReservation';
 
 export const Carga = () => {
+  const student = useLocalStorage.getStorage('student');
+  const auth = useLocalStorage.getStorage('auth');
+  const [subjects, setSubject] = useState([]);
+  const { isLoading, data } = useGetSubjects(student.id);
 
-  useEffect(() => { }, [])
+  useEffect(() => {
+    if (!isLoading) setSubject(data);
+  }, [isLoading]);
 
 
-  return (<div className='registro'>
-    <h3>Registro de Asistencia</h3>
-    <h5>Por favor, responda el siguiente cuestionario con total honestidad</h5>
+  const onClick = () => {
+    const idSubjects = subjects.map((subject) => {
+      return parseInt(subject.id)
+    })
 
-    <div className="border border-dark p-5 m-5 ">
-      <div className="materia">
-        {/* CONTENT */}
-        <a>Estas son las clases disponibles para mañana:</a>
-        <br></br>
+    console.log({
+      id: parseInt(student.id),
+      email: auth.email,
+      ids_subjects: idSubjects
+    })
 
-        <a>[Nombre de la materia] - [Aula] - [Horario]</a>
-        <a>[Nombre de la materia] - [Aula] - [Horario]</a>
-        <a>[Nombre de la materia] - [Aula] - [Horario]</a>
+    CreateReservation({
+      id: parseInt(student.id),
+      email: auth.email,
+      ids_subjects: idSubjects
+    })
+  }
+
+  return (
+    <div className="registro">
+      <h3>Registro de Asistencia</h3>
+
+      <div className="border border-dark p-5 m-5">
+        <div className="materia">
+          <p className="mb-2">Estas son las clases disponibles para mañana:</p>
+          <ul>
+            {subjects.map((subject, index) => (
+              <li key={index} className="mb-4 border-b-2 pb-2">
+                <span className="text-xl font-bold">{subject.name}</span>
+                <br />
+                <span className="text-sm">
+                  Horario: {subject.start_hour} - {subject.end_hour} | Aula: {subject.room}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* ACCESS BUTTONS */}
+        <div className="mt-4">
+          <button className="bg-yellow-500 hover:bg-yellow-400 text-white px-4 py-2 rounded mr-2" onClick={onClick}>
+            Enviar
+          </button>
+          <Link to="/student/welcome" className="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded">
+            Cancelar
+          </Link>
+        </div>
       </div>
-
-      {/* ACCESS BUTTONS */}
-      <br></br> <br></br>
-      {/*
-        <button type='submit' className="btn btn-warning d-inline">Enviar</button>
-        <button  className="btn btn-danger d-inline  mx-2">Cancelar</button>*/}
-
-      <Link to="#" className="links-style">
-        <button className="btn btn-warning d-inline">Enviar</button>
-      </Link>
-      {/*<button type='submit' className="btn btn-warning d-inline">Enviar</button>*/}
-      <Link to="/RealizarCarga" className="links-style">
-        <button className="btn btn-danger d-inline mx-2">Cancelar</button>
-      </Link>
-
-
-
     </div>
-
-
-
-
-
-  </div>);
+  );
 };
