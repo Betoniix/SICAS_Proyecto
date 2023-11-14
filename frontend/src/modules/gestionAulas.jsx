@@ -1,71 +1,61 @@
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+
 import Header from "../components/header";
 import NavBar from "../components/navBar";
 //import AulasModal from "../components/aulasModal";
 import Aula from "../components/aula";
 import AniadirModal from "../components/añadirModal";
+import { usePostRoom } from "../hooks/usePostRoom";
 
 function GestionAulas() {
-  let AulasActuales = [
-    {
-      NombreAula: "DB-02",
-      Edificio: "Edificio D",
-      Capacidad: "26",
-    },
-    {
-      NombreAula: "EE-03",
-      Edificio: "Edificio A",
-      Capacidad: "45",
-    },
-    {
-      NombreAula: "DB-04",
-      Edificio: "Edificio D",
-      Capacidad: "23",
-    },
-    {
-      NombreAula: "EE-01",
-      Edificio: "Edificio A",
-      Capacidad: "50",
-    },
-    {
-      NombreAula: "HA-02",
-      Edificio: "Edifcio H",
-      Capacidad: "30",
-    },
-    {
-      NombreAula: "HA-02",
-      Edificio: "Edifcio H",
-      Capacidad: "30",
-    },
-    {
-      NombreAula: "HA-02",
-      Edificio: "Edifcio H",
-      Capacidad: "30",
-    },
-    {
-      NombreAula: "HA-02",
-      Edificio: "Edifcio H",
-      Capacidad: "30",
-    },
-  ];
-
-  const [aulas, setAulas] = useState(AulasActuales);
+  const [aulas, setAulas] = useState([]);
   const [mostrarForm, setMostrarForm] = useState(false);
+  const { addRoom } = usePostRoom();
+
   //const [formData, setFormData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:4444/rooms");
+        const a = response.data.data;
+        console.log(a);
+
+        setAulas(response.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+      }
+    };
+
+    fetchData();
+  }, []); // El array vacío indica que este efecto se ejecuta solo una vez al montar el componente.
 
   function anadirOnSubmit(aula, edificio, capacidad) {
     let copyAulas = aulas;
-
+    console.log("esta pasando");
     const nuevaAula = {
-      NombreAula: aula,
-      Edificio: edificio,
-      Capacidad: capacidad,
+      build: {
+        id: copyAulas.index + 1,
+        name: edificio,
+      },
+      capacity: capacidad,
+      id: copyAulas.index + 1,
+      name: aula,
     };
 
     copyAulas.push(nuevaAula);
 
     setMostrarForm(false);
     setAulas(copyAulas);
+
+    let data = {
+      name: aula,
+      capacity: parseInt(capacidad),
+      id_build: parseInt(edificio),
+    };
+    addRoom(data);
   }
 
   function añadir() {
@@ -89,10 +79,11 @@ function GestionAulas() {
             <p className="font-bold text-[30px] ">Aulas</p>
             {aulas.map((aula, index) => (
               <Aula
-                key={index}
-                Nombre={aula.NombreAula}
-                Edificio={aula.Edificio}
-                Capacidad={aula.Capacidad}
+                Id={aula.id}
+                Id_build={aula.build.Id}
+                Nombre={aula.name}
+                Edificio={aula.build.name}
+                Capacidad={aula.capacity}
               ></Aula>
             ))}
           </div>
