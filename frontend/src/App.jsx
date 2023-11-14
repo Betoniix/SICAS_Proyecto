@@ -42,8 +42,7 @@ export const App = () => {
                 <Route path='/student/load' element={<Carga></Carga>}></Route>
             </Route>
             <Route element={<ProtectedPath isAllowed={!!auth && auth.role === Roles.SCANNER} ></ProtectedPath>}>
-                <Route path='/scanner/welcome' element={<Layout></Layout>}></Route>
-                <Route path='/scanning' element={<Escaneo></Escaneo>}></Route>
+                <Route path='/scanner/scanning' element={<Escaneo></Escaneo>}></Route>
             </Route>
         </Routes>)
 }

@@ -15,7 +15,7 @@ export const Escaneo = () => {
 
 
 
-    <QRCodeReader onRead={(result) => {
+    <QRCodeReader delay={1} height={750} width={750} onRead={(result) => {
       const text = result.data;
       if (result) {
         setText(text);

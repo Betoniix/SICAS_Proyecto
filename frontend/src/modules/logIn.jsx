@@ -25,7 +25,7 @@ function LogIn() {
 
             if (data.role === Roles.ADMIN) navigate('/admin/alerta')
             if (data.role === Roles.STUDENT) navigate('/student/welcome')
-            if (data.role === Roles.SCANNER) navigate('/scanner/welcome')
+            if (data.role === Roles.SCANNER) navigate('/scanner/scanning')
 
 
         } catch (error) {
