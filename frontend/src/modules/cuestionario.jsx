@@ -19,8 +19,11 @@ export const Cuestionario = () => {
         CreateQuestion(newQuestion, correctAnswer)
         setNewQuestion('')
         setCorrectAnswer('')
+        
+
     };
 
+    
     return (
         <>
             <Header />
@@ -31,8 +34,7 @@ export const Cuestionario = () => {
                         Cuestionario
                     </div>
                     <div className="content-center p-4">
-                        {questions.map((quest, index) => (
-                            
+                        {questions.map((quest, index) => (                            
                             <Pregunta key={index}
                             Id={quest.id}
                             Pregunta={quest.question}
