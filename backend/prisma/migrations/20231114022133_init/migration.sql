@@ -128,7 +128,7 @@ CREATE TABLE `Reservations` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `reservation_day` VARCHAR(191) NOT NULL,
     `id_student` INTEGER NOT NULL,
-    `id_subscription` INTEGER NOT NULL,
+    `id_subject` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -167,4 +167,4 @@ ALTER TABLE `Subscriptions` ADD CONSTRAINT `Subscriptions_id_group_fkey` FOREIGN
 ALTER TABLE `Reservations` ADD CONSTRAINT `Reservations_id_student_fkey` FOREIGN KEY (`id_student`) REFERENCES `Students`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Reservations` ADD CONSTRAINT `Reservations_id_subscription_fkey` FOREIGN KEY (`id_subscription`) REFERENCES `Subscriptions`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Reservations` ADD CONSTRAINT `Reservations_id_subject_fkey` FOREIGN KEY (`id_subject`) REFERENCES `Subjects`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

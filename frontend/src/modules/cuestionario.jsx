@@ -3,6 +3,7 @@ import NavBar from "../components/navBar";
 import Header from "../components/header";
 import { useGetCuestions } from "../hooks/useGetCuestions";
 import { CreateQuestion } from "../services/createQuestion";
+import Pregunta from "../components/pregunta";
 
 export const Cuestionario = () => {
     const [questions, setQuestions] = useState([]);
@@ -23,35 +24,24 @@ export const Cuestionario = () => {
     return (
         <>
             <Header />
-            <div className="grid grid-cols-3 content-center h-4/5 mt-10">
+            <div className="h-[85vh] flex justify-evenly items-center justify-items-center justify-self-center">
                 <NavBar />
-                <div className="bg-[#E8E8E8] justify-self-center h-[550px] w-full mr-12 grid grid-cols-1 overflow-auto">
+                <div className="bg-[#E8E8E8] justify-self-center h-[550px] w-full mx-10 grid grid-cols-1 overflow-auto">
                     <div className="self-center justify-self-center text-2xl font-bold">
                         Cuestionario
                     </div>
-                    <div className="grid grid-cols-4 content-center p-4">
+                    <div className="content-center p-4">
                         {questions.map((quest, index) => (
-                            <React.Fragment key={index}>
-                                <div className="col-span-2">
-                                    {quest.question} - {quest.answer}
-                                </div>
-                                <a
-                                    className="bg-[#D5A00F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2"
-                                    href="#"
-                                >
-                                    Editar
-                                </a>
-                                <a
-                                    className="bg-[#D50F0F] w-28 h-10 rounded-md text-center self-center justify-self-center py-2"
-                                    href="#"
-                                >
-                                    Eliminar
-                                </a>
-                            </React.Fragment>
+                            
+                            <Pregunta key={index}
+                            Id={quest.id}
+                            Pregunta={quest.question}
+                            Respuesta={quest.answer}
+                        ></Pregunta>
                         ))}
                     </div>
                 </div>
-                <div className="bg-[#E8E8E8] justify-self-center h-[550px] w-full mx-6 grid grid-cols-1">
+                <div className="bg-[#E8E8E8] justify-self-center h-[550px] w-full mr-5 grid grid-cols-1">
                     <div className="self-center justify-self-center text-2xl font-bold">
                         Añadir nueva pregunta
                     </div>

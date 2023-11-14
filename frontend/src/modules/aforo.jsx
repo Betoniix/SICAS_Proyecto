@@ -26,9 +26,9 @@ const Aforo = () => {
     return (
         <>
             <Header />
-            <div className="grid grid-cols-3 content-center h-4/5 mt-10">
+            <div className="h-[85vh] flex justify-evenly items-center justify-items-center justify-self-center">
                 <NavBar className="z-index-[-1]" />
-                <div className="col-span-2 bg-[#E8E8E8] justify-self-center h-[550px] w-full mr-12 grid grid-cols-1">
+                <div className="col-span-2 bg-[#E8E8E8] justify-self-center h-[550px] w-full mx-12 grid grid-cols-1">
                     <div className="self-center justify-self-center text-2xl font-bold">Aforo</div>
                     <div className="flex flex-col justify-self-center text-center self-center">
                         Porcentaje de capacidad
