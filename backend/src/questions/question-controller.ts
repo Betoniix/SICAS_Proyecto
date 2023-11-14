@@ -30,8 +30,8 @@ export class QuestionController {
 
     async DeleteQuestion(req: Request, res: Response) {
         try {
-            const { id } = req.body as { id: number }
-            const result = await this.service.DeleteQuestion(id)
+            const { id } = req.params
+            const result = await this.service.DeleteQuestion(Number.parseInt(id))
             res.send({ data: result })
         } catch (error) {
             console.log(error)
