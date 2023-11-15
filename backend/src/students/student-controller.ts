@@ -33,7 +33,7 @@ export class StudentController {
             res.send({ data: result })
         } catch (error) {
             console.log(error)
-            res.status(500).send({ data: 'Error getting student ID' })
+            res.status(500).send({ data: 'No reservation found' })
         }
     }
 }

@@ -14,7 +14,5 @@ export class AlertController {
             console.log(error)
             res.status(500).send({ data: 'Something went wrong creating the BAN' })
         }
-
     }
-
 }

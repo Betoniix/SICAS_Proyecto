@@ -34,7 +34,7 @@ export class StudentStore implements IStudent {
         try {
             const ban = await client.bans.findFirst({ where: { id_student: id } })
 
-            if (ban === null) throw new Error('')
+            if (ban === null) throw new Error('No ban founded with id ' + id)
 
             return ban
         } catch (error) {

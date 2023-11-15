@@ -38,8 +38,7 @@ function AulasModal({
         </div>
         <button
           className="w-[214px] h-[60px] bg-[#D5A00F] text-white text-[25px] font-normal rounded-[10px] submit"
-          onClick={() => editarOnSubmit(nombre, edificio, capacidad)}
-        >
+          onClick={() => editarOnSubmit(nombre, edificio, capacidad)}>
           Actualizar
         </button>
       </div>

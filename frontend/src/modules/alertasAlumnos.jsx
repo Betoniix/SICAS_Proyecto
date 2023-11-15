@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { usePostAlert } from "../hooks/usePostAlert";
 import Layout from "./Layout";
 import { CreateAlert } from "../services/createAlert";
 
@@ -7,11 +6,15 @@ function AlertasAlumnos() {
   const [matricula, setMatricula] = useState("");
   const [inicio, setInicio] = useState("");
   const [final, setFinal] = useState("");
-  const { banear } = usePostAlert();
 
-  function restringir() {
+
+  function restringir(e) {
+    e.preventDefault();
     if (matricula && inicio && final) {
       let data = { email: matricula, start_ban: inicio, end_ban: final };
+
+      console.log('Restringir')
+
       CreateAlert(data)
         .then(() => {
           alert('Alerta enviada')
@@ -19,6 +22,10 @@ function AlertasAlumnos() {
         .catch(() => {
           alert('Matricula incorrecta')
         })
+
+      setFinal('')
+      setInicio('')
+      setMatricula('')
     } else {
       alert("Por favor, complete todos los campos antes de continuar.");
     }

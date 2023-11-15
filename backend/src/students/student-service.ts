@@ -14,13 +14,19 @@ export class StudentService {
 
         if (result === null) throw Error('No ban found')
 
-        return result
+        const start = new Date(result.start_ban)
+        const end = new Date(result.end_ban)
+        const current = new Date()
+        current.setDate(new Date().getDate() + 1)
+
+        console.log(current >= start && current <= end)
+        return (current >= start && current <= end)
     }
 
     async ValidateReservation(id: number) {
         const result = await this.store.getReservation(id)
 
-        if (result === null) throw Error('No ban found')
+        if (result === null) throw Error('No reservation found')
 
         return result
     }

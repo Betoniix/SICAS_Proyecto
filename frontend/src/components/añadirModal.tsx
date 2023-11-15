@@ -32,10 +32,8 @@ function AniadirModal({ anadirOnSubmit }) {
             onChange={(e) => setCapacidad(e.target.value)}
           ></input>
         </div>
-        <button
-          className="w-[214px] h-[60px] bg-[#D5A00F] text-white text-[25px] font-normal rounded-[10px] submit"
-          onClick={() => anadirOnSubmit(nombre, edificio, capacidad)}
-        >
+        <button className="w-[214px] h-[60px] bg-[#D5A00F] text-white text-[25px] font-normal rounded-[10px] submit"
+          onClick={() => anadirOnSubmit(nombre, edificio, capacidad)}>
           Añadir
         </button>
       </div>
