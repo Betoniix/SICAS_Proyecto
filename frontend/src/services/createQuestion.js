@@ -7,11 +7,13 @@ export const CreateQuestion = (question, answer) => {
         answer
     }
 
-    axios.post(`${envLoader.back}/questions/create`, data)
+    return axios.post(`${envLoader.back}/questions/create`, data)
         .then((res) => {
             console.log(res.data)
+            return res
         })
         .catch((err) => {
             console.log(err)
+            throw err
         })
 }

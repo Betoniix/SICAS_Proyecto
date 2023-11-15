@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import NavBar from "../components/navBar";
 import Header from "../components/header";
 import { useGetCuestions } from "../hooks/useGetCuestions";
 import { CreateQuestion } from "../services/createQuestion";
 import Pregunta from "../components/pregunta";
+import { deletQuestion } from "../services/deleteQuestion";
 
 export const Cuestionario = () => {
     const [questions, setQuestions] = useState([]);
@@ -15,36 +16,55 @@ export const Cuestionario = () => {
         if (!isLoading) setQuestions(data);
     }, [isLoading, data]);
 
-    const agregarPregunta = () => {
-        CreateQuestion(newQuestion, correctAnswer)
-        setNewQuestion('')
-        setCorrectAnswer('')
-        
-
+    const onDelete = (id) => {
+        console.log(`id ${id}`);
+        deletQuestion(id)
+            .then((res) => {
+                console.log(res.data);
+                if (res.data) setQuestions((prevs) => prevs.filter((question) => question.id !== id));
+                if (!res.data) alert('no se pudo eliminar');
+            })
+            .catch((err) => {
+                console.log(err);
+                alert('Algo salió mal');
+            });
     };
 
-    
+    const agregarPregunta = () => {
+        CreateQuestion(newQuestion, correctAnswer)
+            .then((res) => {
+                setQuestions((prev) => [...prev, res.data.data]);
+            })
+            .catch((err) => {
+                console.log(err);
+                alert('No se pudo crear');
+            });
+        setNewQuestion('');
+        setCorrectAnswer('');
+    };
+
     return (
         <>
             <Header />
             <div className="h-[85vh] flex justify-evenly items-center justify-items-center justify-self-center">
                 <NavBar />
                 <div className="bg-[#E8E8E8] justify-self-center h-[550px] w-full mx-10 grid grid-cols-1 overflow-auto">
-                    <div className="self-center justify-self-center text-2xl font-bold">
+                    <div className="self-center justify-self-center text-2xl font-bold mb-4">
                         Cuestionario
                     </div>
-                    <div className="content-center p-4">
-                        {questions.map((quest, index) => (                            
+                    <div className="content-center p-4 flex flex-col items-center">
+                        {questions.map((quest, index) => (
                             <Pregunta key={index}
-                            Id={quest.id}
-                            Pregunta={quest.question}
-                            Respuesta={quest.answer}
-                        ></Pregunta>
+                                Id={quest.id}
+                                Pregunta={quest.question}
+                                Respuesta={quest.answer}
+                                callback={onDelete}
+                            ></Pregunta>
                         ))}
                     </div>
                 </div>
                 <div className="bg-[#E8E8E8] justify-self-center h-[550px] w-full mr-5 grid grid-cols-1">
-                    <div className="self-center justify-self-center text-2xl font-bold">
+                    <div className="self-center justify-self-center text-2xl font-bold mb-4">
                         Añadir nueva pregunta
                     </div>
                     <div className="flex flex-col justify-self-center text-center self-center">

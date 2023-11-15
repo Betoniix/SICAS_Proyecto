@@ -11,28 +11,23 @@ function LogIn() {
     const [contra, setContra] = useState("");
     const navigate = useNavigate()
 
-    async function iniciarSesion() {
-        try {
-            const storage = useLocalStorage
-            let respuesta = await apiLogin(usuario, contra);
-            const data = respuesta.data
+    function iniciarSesion() {
+        apiLogin(usuario, contra)
+            .then((res) => {
+                const result = res.data
+                const body = { id: result.id, email: usuario, role: result.role }
+                useLocalStorage.setStorage('auth', body)
 
-            const body = { id: respuesta.data.id, email: usuario, role: respuesta.data.role }
-
-            console.log(body)
-
-            storage.setStorage('auth', body)
-
-            if (data.role === Roles.ADMIN) navigate('/admin/alerta')
-            if (data.role === Roles.STUDENT) navigate('/student/welcome')
-            if (data.role === Roles.SCANNER) navigate('/scanner/scanning')
-
-
-        } catch (error) {
-            console.error("Error al realizar la solicitud:", error);
-            alert("Error al iniciar sesión");
-        }
+                if (result.role === Roles.ADMIN) navigate('/admin/alerta')
+                if (result.role === Roles.STUDENT) navigate('/student/welcome')
+                if (result.role === Roles.SCANNER) navigate('/scanner/scanning')
+            })
+            .catch((err) => {
+                console.error("Error al realizar la solicitud:", err);
+                alert("Error al iniciar sesión");
+            })
     }
+
 
     return (
         <div>

@@ -7,7 +7,6 @@ export function apiLogin(user, pass) {
     password: pass
   };
 
-
   return axios.post(`${envLoader.back}/auth/`, body)
     .then(response => {
       console.log('Respuesta exitosa:', response.data);

@@ -1,13 +1,16 @@
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useLocalStorage } from "../services/useLocalStorage";
 
-// eslint-disable-next-line react/prop-types
-export const ProtectedPath = ({ isAllowed, children }) => {
-    const navigate = useNavigate();
+export const ProtectedPath = ({ role, children }) => {
+    const navigate = useNavigate()
 
-    if (!isAllowed) {
-        console.log(isAllowed)
-        navigate(-1)
-    }
+    useEffect(() => {
+        const userData = useLocalStorage.getStorage('auth')
+        if (userData === null || userData === undefined) navigate(-1)
+        if (userData.role !== role) navigate(-1)
+    }, [role])
+
 
     return children ? children : <Outlet />;
 };
