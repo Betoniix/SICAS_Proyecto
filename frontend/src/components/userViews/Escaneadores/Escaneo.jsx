@@ -12,11 +12,21 @@ export const Escaneo = () => {
   const handleNuevoEscaneo = () => {
     setText('')
     setButtonColor('bg-gray-500')
+    setToVerify('')
   };
 
   const handleVerificar = () => {
+    console.log(toVerify.trim().length)
+    if (toVerify.trim().length === 0) {
+      setResultColor('text-red-500')
+      setText('Sin informacion escaneada')
+      setToVerify('')
+      return
+    }
+
     VerifyReservation(toVerify)
       .then((res) => {
+        console.log(res.data)
         if (res.data) setText('Codigo de acceso valido')
         setResultColor('text-blue-500')
       })
@@ -25,6 +35,9 @@ export const Escaneo = () => {
         setText('Codigo de acceso no valido')
         setResultColor('text-red-500')
       })
+
+    setButtonColor('bg-gray-500')
+    setToVerify('')
   };
 
   return (<>

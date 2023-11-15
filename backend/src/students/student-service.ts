@@ -9,4 +9,20 @@ export class StudentService {
         return result
     }
 
+    async ValidateBan(id: number) {
+        const result = await this.store.getBan(id)
+
+        if (result === null) throw Error('No ban found')
+
+        return result
+    }
+
+    async ValidateReservation(id: number) {
+        const result = await this.store.getReservation(id)
+
+        if (result === null) throw Error('No ban found')
+
+        return result
+    }
+
 }
