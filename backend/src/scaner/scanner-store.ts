@@ -21,6 +21,8 @@ export class ScannerStore implements IReservation {
                     }
                 })
 
+                console.log(result, UTCFORMAT)
+
                 if (result === null) throw new Error('Invalid data')
             }
             return true
