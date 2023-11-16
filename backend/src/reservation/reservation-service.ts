@@ -51,10 +51,10 @@ export class ReservationService {
         const mailer = Mailer.instance
         const result = await this.reservationStore.create(reservation)
         const subject = 'Reservacion hecha existosamente'
+
         const createQRAPI = `${EnvLoader.QR_API}${reservation.id}:${reservation.ids_subjects.join(":")}`
         const qrResult = await axios.get(createQRAPI, { responseType: 'arraybuffer' })
         writeFileSync(`img/A${reservation.id}.png`, Buffer.from(qrResult.data, 'binary'))
-
 
         mailer.sendMail(reservation.email, subject, 'codigo QR para acceder', [{ filename: `A${reservation.email}.png`, path: `img/A${reservation.id}.png`, }])
 

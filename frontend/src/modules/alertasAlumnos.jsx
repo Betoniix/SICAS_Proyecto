@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Header from "../components/header";
-import NavBar from "../components/navBar";
 import { usePostAlert } from "../hooks/usePostAlert";
+import Layout from "./Layout";
+import { CreateAlert } from "../services/createAlert";
 
 function AlertasAlumnos() {
   const [matricula, setMatricula] = useState("");
@@ -12,22 +12,28 @@ function AlertasAlumnos() {
   function restringir() {
     if (matricula && inicio && final) {
       let data = { email: matricula, start_ban: inicio, end_ban: final };
-      banear(data);
+      CreateAlert(data)
+        .then(() => {
+          alert('Alerta enviada')
+        })
+        .catch(() => {
+          alert('Matricula incorrecta')
+        })
     } else {
       alert("Por favor, complete todos los campos antes de continuar.");
     }
   }
 
   return (
-    <>
-      <Header />
+
+    <Layout>
       <div className="h-[85vh] flex justify-evenly items-center justify-items-center justify-self-center">
-        <NavBar />
+
         <form className="w-[852px] h-[650px] bg-[#E8E8E8] shadow-xl flex flex-col justify-around content-center items-center">
           <p className="font-bold text-[30px] ">Alertas</p>
           <div className="h-[60%] flex flex-col justify-around">
             <div className="flex flex-col">
-              <label className="text-[20px]">Matrícula</label>
+              <label className="text-[20px]">Matricula</label>
               <input
                 className="w-[417px] h-[58px] rounded-[10px] outline outline-2 outline-black p-4"
                 value={matricula}
@@ -58,13 +64,15 @@ function AlertasAlumnos() {
           </div>
           <button
             className="w-[214px] h-[60px] bg-[#D50F0F] text-white text-[25px] font-normal rounded-[10px]"
-            onClick={() => restringir()}
+            onClick={restringir}
           >
             Restringir
           </button>
         </form>
       </div>
-    </>
+
+    </Layout>
+
   );
 }
 

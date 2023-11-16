@@ -30,11 +30,10 @@ function Aula({ Id, Id_build, Nombre, Edificio, Capacidad }) {
   };
 
   const actualizarAula = () => {
-    //backend
     setMostrarForm(false);
   };
 
-  const eliminar = () => {};
+  const eliminar = () => { };
 
   const editar = () => {
     setMostrarForm(true);
@@ -55,7 +54,7 @@ function Aula({ Id, Id_build, Nombre, Edificio, Capacidad }) {
       )}
 
       <p className="text-[30px]">
-        [{nombre}] - [{edificio}] - [{capacidad}]
+        Nombre: {nombre} - Edificio: {edificio} - Capacidad: {capacidad}
       </p>
       <button
         className="w-[214px] h-[60px] bg-[#D5A00F] text-white text-[25px] font-normal rounded-[10px]"

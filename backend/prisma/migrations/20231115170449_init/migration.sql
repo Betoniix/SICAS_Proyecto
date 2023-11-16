@@ -13,8 +13,10 @@ CREATE TABLE `Users` (
 CREATE TABLE `Students` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
+    `plate` VARCHAR(191) NOT NULL,
     `id_user` INTEGER NOT NULL,
 
+    UNIQUE INDEX `Students_plate_key`(`plate`),
     UNIQUE INDEX `Students_id_user_key`(`id_user`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

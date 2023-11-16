@@ -7,6 +7,7 @@ import NavBar from "../components/navBar";
 import Aula from "../components/aula";
 import AniadirModal from "../components/añadirModal";
 import { usePostRoom } from "../hooks/usePostRoom";
+import Layout from "./Layout";
 
 function GestionAulas() {
   const [aulas, setAulas] = useState([]);
@@ -25,7 +26,6 @@ function GestionAulas() {
         setAulas(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
       }
     };
 
@@ -67,13 +67,13 @@ function GestionAulas() {
   }
 
   return (
-    <>
-      <Header></Header>
+
+    <Layout>
       {mostrarForm && (
         <AniadirModal anadirOnSubmit={anadirOnSubmit}></AniadirModal>
       )}
       <div className="h-[85vh] flex justify-evenly items-center justify-items-center justify-self-center">
-        <NavBar />
+
         <div className="h-[100%] flex flex-col justify-around items-center">
           <div className="w-[1338px] h-[686px] max-h-[686px] bg-[#D9D9D9] flex flex-col content-center items-center overflow-auto ">
             <p className="font-bold text-[30px] ">Aulas</p>
@@ -96,7 +96,9 @@ function GestionAulas() {
           {mostrarForm ? true : false}
         </div>
       </div>
-    </>
+
+    </Layout>
+
   );
 }
 

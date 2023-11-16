@@ -6,8 +6,6 @@ import { CreateReservationsDTO } from "./dto/create-reservation-dto";
 export class ReservationsController {
     constructor(private readonly service: ReservationService) { }
 
-
-
     async GetAllSubjectsAvailable(req: Request, res: Response) {
         try {
             const { id } = req.params
@@ -22,6 +20,7 @@ export class ReservationsController {
     async CreateReservations(req: Request, res: Response) {
         try {
             const createReservation = req.body as CreateReservationsDTO
+            console.log(createReservation)
             const result = await this.service.createReservation(createReservation)
             res.send({ data: result })
         } catch (error) {

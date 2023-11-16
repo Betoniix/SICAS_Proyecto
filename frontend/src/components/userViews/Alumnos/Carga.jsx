@@ -1,5 +1,5 @@
 import '../../../FormApp.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useGetSubjects } from '../../../hooks/useGetSubjects';
 import { useLocalStorage } from '../../../services/useLocalStorage';
@@ -10,6 +10,7 @@ export const Carga = () => {
   const auth = useLocalStorage.getStorage('auth');
   const [subjects, setSubject] = useState([]);
   const { isLoading, data } = useGetSubjects(student.id);
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!isLoading) setSubject(data);
@@ -32,6 +33,13 @@ export const Carga = () => {
       email: auth.email,
       ids_subjects: idSubjects
     })
+      .then(() => {
+        alert('reservacion exitosa')
+        navigate('/student/welcome')
+      })
+      .catch(() => {
+        alert('Algo salio mal generando la reservacion')
+      })
   }
 
   return (

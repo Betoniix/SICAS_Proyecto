@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import NavBar from "../components/navBar";
-import Header from "../components/header";
 import { useGetCuestions } from "../hooks/useGetCuestions";
 import { CreateQuestion } from "../services/createQuestion";
 import Pregunta from "../components/pregunta";
 import { deletQuestion } from "../services/deleteQuestion";
+import Layout from "./Layout";
 
 export const Cuestionario = () => {
     const [questions, setQuestions] = useState([]);
@@ -44,10 +43,8 @@ export const Cuestionario = () => {
     };
 
     return (
-        <>
-            <Header />
-            <div className="h-[85vh] flex justify-evenly items-center justify-items-center justify-self-center">
-                <NavBar />
+        <Layout>
+            <div className="h-[85vh] flex justify-evenly items-center justify-items-center justify-self-center w-[85%]">
                 <div className="bg-[#E8E8E8] justify-self-center h-[550px] w-full mx-10 grid grid-cols-1 overflow-auto">
                     <div className="self-center justify-self-center text-2xl font-bold mb-4">
                         Cuestionario
@@ -95,6 +92,9 @@ export const Cuestionario = () => {
                     </button>
                 </div>
             </div>
-        </>
+
+        </Layout>
+
+
     );
 };

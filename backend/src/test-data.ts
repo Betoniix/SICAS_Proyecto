@@ -4,9 +4,21 @@ const SetTestData = async () => {
     const client = DBConnection.instance.client
 
     await client.capacity.create({ data: { percentage: 50 } })
-    await client.roles.createMany({ data: [{ name: "STUDENT" }, { name: "ADMIN" }] })
-    await client.users.createMany({ data: [{ email: 'a@a.com', id_role: 1, password: "1", }, { email: 'a@b.com', id_role: 1, password: "1", }] })
-    await client.students.createMany({ data: [{ name: 'Alberto Jesus Chacon Marx', id_user: 1 }, { name: 'Juan Pablo Leiva Flor', id_user: 2 }] })
+    await client.roles.createMany({
+        data: [
+            { name: "STUDENT" },
+            { name: "ADMIN" },
+            { name: "SCANNER" }
+        ]
+    })
+    await client.users.createMany({
+        data: [
+            { email: 'miguelhumberto522@gmail.com', id_role: 1, password: "1", },
+            { email: 'admin@correo.com', id_role: 2, password: "1", },
+            { email: 'escaner@correo.com', id_role: 3, password: "1", }
+        ]
+    })
+    await client.students.createMany({ data: [{ name: 'Alberto Jesus Chacon Marx', id_user: 1, plate: 'a16001614' }] })
     await client.days.createMany({ data: [{ name: 'LUNES' }, { name: 'MARTES' }, { name: 'MIERCOLES' }, { name: 'JUEVES' }, { name: 'VIERNES' }] })
     await client.subjects.createMany({ data: [{ name: 'Admin. Proys 2', }, { name: 'Salesforce', }, { name: 'Clean Architecture', }, { name: 'Servicio social', },] })
     await client.hours.createMany({
@@ -60,9 +72,6 @@ const SetTestData = async () => {
             { id_group: 2, id_student: 1 },
             { id_group: 3, id_student: 1 },
             { id_group: 4, id_student: 1 },
-            { id_group: 1, id_student: 2 },
-            { id_group: 2, id_student: 2 },
-            { id_group: 3, id_student: 2 },
         ]
     })
 }
